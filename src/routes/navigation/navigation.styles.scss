@@ -1,0 +1,16 @@
+.logo {
+  display: inline-block;
+  width: 20%;
+  padding-left: 15px;
+}
+
+.nav-items {
+  display: inline-block;
+  text-align: right;
+  width: 79%;
+
+  .nav-link-item {
+    display: inline-block;
+    padding-right: 10px;
+  }
+}

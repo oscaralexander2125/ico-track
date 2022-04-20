@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Authentication from "./routes/authentication/authentication.component";
+import ICOS from "./routes/icos/icos.component";
+import Navigation from "./routes/navigation/navigation.component";
+import WatchList from "./routes/watchlist/watchlist.component";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route path="icos" element={<ICOS />} />
+        <Route path="watchlist" element={<WatchList />} />
+        <Route path="auth" element={<Authentication />} />
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;
