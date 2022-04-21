@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 import "./navigation.styles.scss";
 
 const Navigation = () => {

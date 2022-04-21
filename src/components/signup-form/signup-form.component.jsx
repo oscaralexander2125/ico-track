@@ -1,5 +1,9 @@
 import { useState } from "react";
-import './signup-form.styles.scss'
+import "./signup-form.styles.scss";
+import {
+  createAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
 
 const defaultFormInputs = {
   displayName: "",
@@ -12,13 +16,31 @@ const SignUpForm = ({ alternateForms }) => {
   const [formFields, setFormFields] = useState(defaultFormInputs);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(displayName, email, password, confirmPassword);
+    if (password !== confirmPassword) {
+      return console.log("passwords dont match");
+    }
+
+    try {
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserDocumentFromAuth(user, { displayName });
+      resetFormFields();
+    } catch (err) {
+      console.log(err.code);
+    }
   };
 
   const changeHandler = (event) => {
-    setFormFields({ ...formFields, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
+  };
+
+  const resetFormFields = () => {
+    setFormFields(defaultFormInputs);
   };
 
   return (
@@ -64,7 +86,9 @@ const SignUpForm = ({ alternateForms }) => {
         />
         <button type="submit">Sign In</button>
       </form>
-      <h3 className="signIn-text" onClick={() => alternateForms(true)}>Sign In</h3>
+      <h3 className="signIn-text" onClick={() => alternateForms(true)}>
+        Sign In
+      </h3>
     </div>
   );
 };

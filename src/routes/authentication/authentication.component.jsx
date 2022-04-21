@@ -1,11 +1,14 @@
 import {
+  auth,
   signInWithGooglePopup,
   createUserDocumentFromAuth,
+  signInWithGoogleRedirect,
 } from "../../utils/firebase/firebase.utils";
+import { getRedirectResult } from "firebase/auth";
 import SignInForm from "../../components/signin-form/signin-form.component";
 import SignUpForm from "../../components/signup-form/signup-form.component";
 import "./authentication.styles.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const loginOrSignUp = {
   loginForm: true,
@@ -14,10 +17,6 @@ const loginOrSignUp = {
 const Authentication = () => {
   const [formToDisplay, setFormToDisplay] = useState(loginOrSignUp);
   const { loginForm } = formToDisplay;
-  const logGoogleUser = async () => {
-    const {user} = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-  };
 
   const alternateForms = (isLogged) => {
     setFormToDisplay({ loginForm: isLogged });
@@ -26,10 +25,7 @@ const Authentication = () => {
   return (
     <div className="signInOrUp">
       {loginForm ? (
-        <SignInForm
-          alternateForms={alternateForms}
-          logGoogleUser={logGoogleUser}
-        />
+        <SignInForm alternateForms={alternateForms} />
       ) : (
         <SignUpForm alternateForms={alternateForms} />
       )}
