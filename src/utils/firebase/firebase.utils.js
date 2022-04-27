@@ -7,7 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -63,6 +63,16 @@ export const createUserDocumentFromAuth = async (userAuth, extraInfo = {}) => {
   return userDocRef;
 };
 
+export const getDocumentData = async (userAuth) => {
+  if (!userAuth) return;
+  const userDocRef = doc(db, "users", userAuth.uid);
+  const userSnapShot = await getDoc(userDocRef);
+
+  if (userSnapShot.exists()) {
+    return userSnapShot.data();
+  }
+};
+
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
@@ -80,5 +90,5 @@ export const signOutUser = async () => {
 };
 
 export const onAuthStateChangedListener = (callback) => {
-  return onAuthStateChanged(auth, callback)
-}
+  return onAuthStateChanged(auth, callback);
+};

@@ -5,6 +5,8 @@ import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
+import { setCurrentUser } from "../../store/user/user.action";
+import { useDispatch } from "react-redux";
 
 const defaultFormInputs = {
   email: "",
@@ -12,6 +14,7 @@ const defaultFormInputs = {
 };
 
 const SignInForm = ({ alternateForms, logGoogleRedirect }) => {
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormInputs);
   const { email, password } = formFields;
 
@@ -19,11 +22,7 @@ const SignInForm = ({ alternateForms, logGoogleRedirect }) => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      console.log(user);
+      await signInAuthUserWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (err) {
       console.log(err.code);
@@ -35,8 +34,7 @@ const SignInForm = ({ alternateForms, logGoogleRedirect }) => {
   };
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const resetFormFields = () => {
