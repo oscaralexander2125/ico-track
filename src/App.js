@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import Authentication from "./routes/authentication/authentication.component";
+import ICOS from "./routes/icos/icos.component";
+import Navigation from "./routes/navigation/navigation.component";
+import WatchList from "./routes/watchlist/watchlist.component";
+import {
+  createUserDocumentFromAuth,
+  getDocumentData,
+  onAuthStateChangedListener,
+} from "./utils/firebase/firebase.utils";
+import { setCurrentUser } from "./store/user/user.action";
+import IcoCardInfo from "./routes/coin-card-info/ico-card-info.component";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener(async (user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+      const data = await getDocumentData(user);
+      const newOjb = data ? { ...user, displayName: data.displayName } : user;
+
+      dispatch(setCurrentUser(newOjb));
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route path="icos" element={<ICOS />} />
+        <Route path="icos/:ico" element={<IcoCardInfo />} />
+        <Route path="watchlist/" element={<WatchList />} />
+        <Route path="watchlist/:ico" element={<IcoCardInfo />} />
+        <Route path="auth" element={<Authentication />} />
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;
