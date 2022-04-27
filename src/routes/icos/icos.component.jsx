@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentCoins } from "../../store/metaCoins/metaCoins.action";
 import { selectCurrentCoins } from "../../store/metaCoins/metaCoins.selector";
 import {} from "../../store/metaCoins/metaCoins.selector";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./icos.styles.scss";
 
 const metaVerseUrl =

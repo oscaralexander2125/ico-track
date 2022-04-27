@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import IcoCard from "../../components/ico-preview-card/ico-preview-card.component";
+//import IcoCard from "../../components/ico-preview-card/ico-preview-card.component";
 
 const WatchList = () => {
   return (
