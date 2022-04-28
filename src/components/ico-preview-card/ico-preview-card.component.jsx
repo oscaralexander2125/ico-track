@@ -1,4 +1,4 @@
-const IcoCard = ({ coin }) => {
+const IcoPreviewCard = ({ coin }) => {
   return (
     <div>
       <div>{coin.name}</div>
@@ -8,4 +8,4 @@ const IcoCard = ({ coin }) => {
   );
 };
 
-export default IcoCard;
+export default IcoPreviewCard;

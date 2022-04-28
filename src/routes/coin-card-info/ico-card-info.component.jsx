@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCoinInfo } from "../../store/coin-info/coin-info.action";
 import { selectCoinInfo } from "../../store/coin-info/coin-info.selector";
 import "./ico-card-info.styles.scss";
+import Description from "../../components/description/description.component";
 
 const IcoCardInfo = () => {
   const { ico } = useParams();
@@ -34,20 +35,14 @@ const IcoCardInfo = () => {
           </div>
           <div>Community Score: {selectCoin["community_score"]}</div>
           <div>Developer Score: {selectCoin["developer_score"]}</div>
-          <div className="platform">{selectCoin["asset_platform_id"]}</div>
+          <div className="platform">Platform: {selectCoin["asset_platform_id"]}</div>
           <div>What is {selectCoin.name}?</div>
-          <p>
-            {selectCoin.description["en"].length < 600
-              ? selectCoin.description["en"]
-              : selectCoin.description["en"].substring(0, 600) +
-                "... go to website for more info"}
-          </p>
+          <Description description={selectCoin.description["en"]} />
           <div>
-
             Website:{" "}
             {
               <a href={selectCoin.links["homepage"][0]}>
-                {selectCoin.links['homepage'][0]}
+                {selectCoin.links["homepage"][0]}
               </a>
             }
           </div>
