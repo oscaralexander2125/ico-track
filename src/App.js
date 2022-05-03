@@ -21,12 +21,10 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener(async (user) => {
-      console.log(user);
       if (user) {
         createUserDocumentFromAuth(user);
       }
       const data = await getDocumentData(user);
-      console.log(data);
       const newOjb = data ? { ...user, displayName: data.displayName } : user;
 
       dispatch(setCurrentUser(newOjb));
