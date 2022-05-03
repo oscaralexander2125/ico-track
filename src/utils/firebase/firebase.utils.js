@@ -90,6 +90,14 @@ export const addCoinToUserDb = async (userAuth, coin) => {
   });
 };
 
+export const removeCoinFromUserDb = async (userAuth, coin) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  await updateDoc(userDocRef, {
+    coins: arrayRemove(coin),
+  });
+};
+
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
