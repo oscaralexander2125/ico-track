@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -10,7 +11,15 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD0Z7v0GdlBjmewcFB3KTtNOQ-IEHMfxJg",
@@ -71,6 +80,22 @@ export const getDocumentData = async (userAuth) => {
   if (userSnapShot.exists()) {
     return userSnapShot.data();
   }
+};
+
+export const addCoinToUserDb = async (userAuth, coin) => {
+  if (!userAuth) return;
+  const userDocRef = doc(db, "users", userAuth.uid);
+  await updateDoc(userDocRef, {
+    coins: arrayUnion(coin),
+  });
+};
+
+export const removeCoinFromUserDb = async (userAuth, coin) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  await updateDoc(userDocRef, {
+    coins: arrayRemove(coin),
+  });
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
