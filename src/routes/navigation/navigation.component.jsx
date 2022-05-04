@@ -8,7 +8,6 @@ import {
   SignOutButton,
   Push,
   NavLink,
-  HamburgerIcon,
   HamburgerIconLine1,
   HamburgerIconLine2,
   HamburgerIconLine3,
@@ -28,7 +27,7 @@ const Navigation = () => {
   return (
     <Fragment>
       <nav className="nav-container">
-        <HamburgerMenuDiv  onClick={toggleMenu}>
+        <HamburgerMenuDiv onClick={toggleMenu}>
           <HamburgerIconLine1 open={isOpen}></HamburgerIconLine1>
           <HamburgerIconLine2 open={isOpen}></HamburgerIconLine2>
           <HamburgerIconLine3 open={isOpen}></HamburgerIconLine3>
