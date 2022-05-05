@@ -1,24 +1,23 @@
 import { Fragment } from "react";
-import "./ico-preview-card.styles.scss";
+import {
+  CoinImagePreviewLogo,
+  CoinPreviewInfoContainer,
+  ReadMoreLink,
+} from "./ico-preview-card.styles.jsx";
 import { Link } from "react-router-dom";
 
 const IcoPreviewCard = ({ coin }) => {
   return (
     <Fragment>
-      <img
-        className="coin-image-preview-logo"
-        src={`${coin.image}`}
-        alt={`${coin.image} logo`}
-      />
-      <div className="coin-basic-preview-info-container">
+      <CoinImagePreviewLogo src={`${coin.image}`} alt={`${coin.image} logo`} />
+      <CoinPreviewInfoContainer>
         <div>{coin.name}</div>
         <div>Market Cap: {coin.market_cap.toLocaleString("en-us")}</div>
         <div>Price: ${coin.current_price}</div>
-        <Link
-          className="read-more-link"
+        <ReadMoreLink
           to={coin.id}
-        >{`Click for More About ${coin.name}`}</Link>
-      </div>
+        >{`Click for More Info About ${coin.name}`}</ReadMoreLink>
+      </CoinPreviewInfoContainer>
     </Fragment>
   );
 };

@@ -3,8 +3,7 @@ import { selectCurrentCoins } from "../../store/metaCoins/metaCoins.selector";
 import { useEffect } from "react";
 import { setCurrentCoins } from "../../store/metaCoins/metaCoins.action";
 import IcoPreviewCard from "../ico-preview-card/ico-preview-card.component";
-import { Link } from "react-router-dom";
-import "./coin-list.styles.scss";
+import { ListContainer, CoinContainer } from "./coin-list.styles.jsx";
 
 const CoinList = ({ metaVerseUrl }) => {
   const dispatch = useDispatch();
@@ -23,13 +22,13 @@ const CoinList = ({ metaVerseUrl }) => {
     selectCoins &&
     selectCoins.map((coin) => {
       return (
-        <div className={`${coin.id} coin-container`} key={coin.id}>
+        <CoinContainer key={coin.id}>
           <IcoPreviewCard coin={coin} />
-        </div>
+        </CoinContainer>
       );
     });
 
-  return <div className="list-container">{coinsList}</div>;
+  return <ListContainer>{coinsList}</ListContainer>;
 };
 
 export default CoinList;

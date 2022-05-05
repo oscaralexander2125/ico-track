@@ -42,6 +42,8 @@ export const Push = styled(NavLinkItem)`
 
 export const NavLink = styled(Link)`
   font-size: 1.1em;
+  text-decoration: none;
+  color: black;
   &:hover {
     color: #07a3e3;
   }
