@@ -7,7 +7,7 @@ const metaVerseUrl =
 const ICOS = () => {
   return (
     <div className="icos-container">
-      <h2>Top Meta Coins</h2>
+      <h2 className="top-coins-meta">Top Meta Coins</h2>
       <CoinList metaVerseUrl={metaVerseUrl} />
     </div>
   );

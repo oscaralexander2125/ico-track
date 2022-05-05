@@ -3,7 +3,7 @@ import {
   getDocumentData,
   removeCoinFromUserDb,
 } from "../../utils/firebase/firebase.utils";
-import IcoCardInfo from "../coin-card-info/ico-card-info.component";
+import IcoCardInfo from "../../components/coin-card-info/ico-card-info.component";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUserCoins } from "../../store/user/user.action";

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCoinInfo } from "../../store/coin-info/coin-info.action";
 import { selectCoinInfo } from "../../store/coin-info/coin-info.selector";
 import "./ico-card-info.styles.scss";
-import Description from "../../components/description/description.component";
+import Description from "../description/description.component";
 
 const IcoCardInfo = () => {
   const { ico } = useParams();
@@ -26,6 +26,10 @@ const IcoCardInfo = () => {
     <div className="coin-info-container">
       {Object.keys(selectCoin).length !== 0 && (
         <div>
+          <img
+            alt={`${selectCoin.name} coin logo`}
+            src={selectCoin.image.thumb}
+          />
           <h2>{selectCoin.name}</h2>
           <div>
             Twitter followers:{" "}
@@ -35,7 +39,9 @@ const IcoCardInfo = () => {
           </div>
           <div>Community Score: {selectCoin["community_score"]}</div>
           <div>Developer Score: {selectCoin["developer_score"]}</div>
-          <div className="platform">Platform: {selectCoin["asset_platform_id"]}</div>
+          <div className="platform">
+            Platform: {selectCoin["asset_platform_id"]}
+          </div>
           <div>What is {selectCoin.name}?</div>
           <Description description={selectCoin.description["en"]} />
           <div>

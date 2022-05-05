@@ -21,7 +21,6 @@ const Navigation = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
   };
 
   return (

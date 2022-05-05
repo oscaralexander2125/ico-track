@@ -1,0 +1,11 @@
+.list-container {
+  display: grid;
+  margin: 0 30px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px 40px;
+  justify-items: center;
+}
+
+.coin-container {
+  justify-self: center;
+}

@@ -5,7 +5,7 @@ import {
   addCoinToUserDb,
   getDocumentData,
 } from "../../utils/firebase/firebase.utils";
-import IcoCardInfo from "../coin-card-info/ico-card-info.component";
+import IcoCardInfo from "../../components/coin-card-info/ico-card-info.component";
 import "./meta-coins-info.styles.scss";
 import { useDispatch } from "react-redux";
 import { setCurrentUserCoins } from "../../store/user/user.action";

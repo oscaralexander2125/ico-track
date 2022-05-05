@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { setCurrentCoins } from "../../store/metaCoins/metaCoins.action";
 import IcoPreviewCard from "../ico-preview-card/ico-preview-card.component";
 import { Link } from "react-router-dom";
+import "./coin-list.styles.scss";
 
 const CoinList = ({ metaVerseUrl }) => {
   const dispatch = useDispatch();
@@ -22,13 +23,8 @@ const CoinList = ({ metaVerseUrl }) => {
     selectCoins &&
     selectCoins.map((coin) => {
       return (
-        <div key={coin.id}>
+        <div className={`${coin.id} coin-container`} key={coin.id}>
           <IcoPreviewCard coin={coin} />
-          <Link
-            className="read-more-link"
-            to={coin.id}
-          >{`Click for More About ${coin.name}`}</Link>
-          <br />
         </div>
       );
     });
