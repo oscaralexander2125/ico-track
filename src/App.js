@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Authentication from "./routes/authentication/authentication.component";
@@ -15,6 +15,7 @@ import MetaCoinsInfo from "./routes/meta-coins-info/meta-coins-info.component";
 import WatchListCoinInfo from "./routes/watchlist-coin-info/watchlist-coin-info.component";
 import { setCurrentCoins } from "./store/metaCoins/metaCoins.action";
 import Home from "./routes/home/home.component";
+import Footer from "./components/footer/footer.component";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,8 @@ const App = () => {
         dispatch(setCurrentUserCoins(data.coins));
       } else {
         dispatch(setCurrentUserCoins([]));
-        dispatch(setCurrentCoins([]));
+        //this will cause an empty render on refresh when there is no user signed in
+        //dispatch(setCurrentCoins([]));
       }
     });
 
@@ -41,16 +43,19 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path="/icos" element={<ICOS />} />
-        <Route path="/icos/:ico" element={<MetaCoinsInfo />} />
-        <Route path="/watchlist/" element={<WatchList />} />
-        <Route path="/watchlist/:ico" element={<WatchListCoinInfo />} />
-        <Route path="/auth" element={<Authentication />} />
-      </Route>
-    </Routes>
+    <Fragment>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="/icos" element={<ICOS />} />
+          <Route path="/icos/:ico" element={<MetaCoinsInfo />} />
+          <Route path="/watchlist/" element={<WatchList />} />
+          <Route path="/watchlist/:ico" element={<WatchListCoinInfo />} />
+          <Route path="/auth" element={<Authentication />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </Fragment>
   );
 };
 

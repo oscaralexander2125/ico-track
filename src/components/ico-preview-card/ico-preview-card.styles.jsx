@@ -18,5 +18,5 @@ export const ReadMoreLink = styled(Link)`
   margin-top: 10px;
   font-weight: 500;
   text-decoration: none;
-  color: #0c00c3;
+  color: #07a3e3;
 `;

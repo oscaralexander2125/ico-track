@@ -1,4 +1,23 @@
+.watchlist-coin-info-container {
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+@media only screen and (max-width: 720px) {
+  .watchlist-coin-info-container {
+    padding: 0 50px;
+  }
+}
+
+@media only screen and (max-width: 419px) {
+  .watchlist-coin-info-container {
+    padding: 0 20px;
+  }
+}
+
 .remove-coin-button {
   display: block;
-  margin: 20px auto;
+  margin: 30px auto;
 }

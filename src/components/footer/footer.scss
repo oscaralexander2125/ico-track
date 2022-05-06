@@ -1,0 +1,15 @@
+.footer-container {
+  background-color: #0c00c3;
+  color: whitesmoke;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  border-top: 1px solid gray;
+  line-height: 60px;
+
+  .footer {
+    height: 60px;
+  }
+}

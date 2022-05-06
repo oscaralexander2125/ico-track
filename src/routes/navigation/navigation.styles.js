@@ -9,7 +9,7 @@ export const NavItems = styled.ul`
   flex-wrap: wrap;
   padding: 0px 10px 3px;
   z-index: 5;
-  box-shadow: 0px 5px 4px #bcbcbc;
+  box-shadow: 0px 5px 4px #000000ab;
   @media only screen and (max-width: 439px) {
     justify-content: space-around;
     flex-direction: column;
@@ -43,7 +43,7 @@ export const Push = styled(NavLinkItem)`
 export const NavLink = styled(Link)`
   font-size: 1.1em;
   text-decoration: none;
-  color: black;
+  color: whitesmoke;
   &:hover {
     color: #07a3e3;
   }
@@ -81,7 +81,7 @@ export const HamburgerIconLine3 = styled(HamburgerIcon)`
 
 export const HamburgerMenuDiv = styled.div`
   position: absolute;
-  top: 0px;
+  top: -16px;
   right: 0;
   height: 62px;
   width: 60px;

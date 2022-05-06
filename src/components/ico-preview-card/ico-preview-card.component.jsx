@@ -4,7 +4,6 @@ import {
   CoinPreviewInfoContainer,
   ReadMoreLink,
 } from "./ico-preview-card.styles.jsx";
-import { Link } from "react-router-dom";
 
 const IcoPreviewCard = ({ coin }) => {
   return (

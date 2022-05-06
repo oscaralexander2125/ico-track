@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ParagraphDescription } from "./description.styles";
 
 const Description = ({ description }) => {
   const [descrip, setDescrip] = useState("");
@@ -22,7 +23,7 @@ const Description = ({ description }) => {
 
   return (
     <div>
-      <p>{descrip}</p>
+      <ParagraphDescription>{descrip}</ParagraphDescription>
     </div>
   );
 };
