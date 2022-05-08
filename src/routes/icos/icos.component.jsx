@@ -1,4 +1,4 @@
-import "./icos.styles.scss";
+import { TopMetaCoinsTitle, CoinsContainer } from "./icos.styles.jsx";
 import CoinList from "../../components/coin-list/coin-list.component";
 
 const metaVerseUrl =
@@ -6,10 +6,10 @@ const metaVerseUrl =
 
 const ICOS = () => {
   return (
-    <div className="icos-container">
-      <h2>Top Meta Coins</h2>
+    <CoinsContainer>
+      <TopMetaCoinsTitle>Top Meta Coins</TopMetaCoinsTitle>
       <CoinList metaVerseUrl={metaVerseUrl} />
-    </div>
+    </CoinsContainer>
   );
 };
 

@@ -5,8 +5,11 @@ import {
   addCoinToUserDb,
   getDocumentData,
 } from "../../utils/firebase/firebase.utils";
-import IcoCardInfo from "../coin-card-info/ico-card-info.component";
-import "./meta-coins-info.styles.scss";
+import CoinCardInfo from "../../components/coin-card-info/coin-card-info.component";
+import {
+  MetaCoinInfoContainer,
+  AddToWatchlistButton,
+} from "./meta-coins-info.styles.jsx";
 import { useDispatch } from "react-redux";
 import { setCurrentUserCoins } from "../../store/user/user.action";
 import { useState } from "react";
@@ -31,16 +34,16 @@ const MetaCoinsInfo = () => {
   };
 
   return (
-    <div className="meta-coins-info-container">
-      <IcoCardInfo />
-      <button onClick={addToWatchList} className="add-to-watchlist-button">
+    <MetaCoinInfoContainer>
+      <CoinCardInfo />
+      <AddToWatchlistButton onClick={addToWatchList}>
         add to watch list
-      </button>
+      </AddToWatchlistButton>
       {isNotUserLoggedIn && (
         <div>Not signed in. Log In to build your watchist</div>
       )}
       {addToList && addedToWatchlist}
-    </div>
+    </MetaCoinInfoContainer>
   );
 };
 

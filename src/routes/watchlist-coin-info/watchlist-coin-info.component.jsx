@@ -3,7 +3,7 @@ import {
   getDocumentData,
   removeCoinFromUserDb,
 } from "../../utils/firebase/firebase.utils";
-import IcoCardInfo from "../coin-card-info/ico-card-info.component";
+import CoinCardInfo from "../../components/coin-card-info/coin-card-info.component";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUserCoins } from "../../store/user/user.action";
@@ -25,8 +25,8 @@ const WatchListCoinInfo = () => {
   };
 
   return (
-    <div>
-      <IcoCardInfo />
+    <div className="watchlist-coin-info-container">
+      <CoinCardInfo />
       <button className="remove-coin-button" onClick={removeCoinFromWatchList}>
         Remove from WatchList
       </button>

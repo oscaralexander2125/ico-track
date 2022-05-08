@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import CoinList from "../../components/coin-list/coin-list.component";
 import {
   selectCurrentUser,
   selectCurrentUserCoins,
 } from "../../store/user/user.selector";
-import "./watchlist.styles.scss";
+import { WatchlistContainer, WatchlistTitle } from "./watchlist.styles.jsx";
 
 const urlComma = "%2c";
 const urlSpace = "%20";
@@ -23,18 +22,16 @@ const WatchList = () => {
   const entireUrl = baseUrl + param;
 
   return (
-    <div>
-      <div className="watchlist-container">
-        {selectUser ? (
-          <div>
-            <h2>My WatchList Coins</h2>
-            <CoinList metaVerseUrl={entireUrl} />
-          </div>
-        ) : (
-          <div>not signed in. log in or register to add to your watchlist</div>
-        )}
-      </div>
-    </div>
+    <WatchlistContainer>
+      {selectUser ? (
+        <>
+          <WatchlistTitle>My WatchList Coins</WatchlistTitle>
+          <CoinList metaVerseUrl={entireUrl} />
+        </>
+      ) : (
+        <div>not signed in. log in or register to add to your watchlist</div>
+      )}
+    </WatchlistContainer>
   );
 };
 
