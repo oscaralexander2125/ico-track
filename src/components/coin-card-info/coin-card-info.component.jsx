@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCoinInfo } from "../../store/coin-info/coin-info.action";
 import { selectCoinInfo } from "../../store/coin-info/coin-info.selector";
-import { CoinInfo, Platform } from "./coin-card-info.styles.jsx";
+import {
+  CoinInfo,
+  Platform,
+  WebsiteLinkColor,
+} from "./coin-card-info.styles.jsx";
 import Description from "../description/description.component";
 
 const CoinCardInfo = () => {
@@ -44,10 +48,10 @@ const CoinCardInfo = () => {
           </CoinInfo>
           <div>What is {selectCoin.name}?</div>
           <Description description={selectCoin.description["en"]} />
-          <div>
+          <WebsiteLinkColor>
             Website:{" "}
             {<a href={selectCoin.links["homepage"][0]}>{selectCoin.name}</a>}
-          </div>
+          </WebsiteLinkColor>
         </div>
       )}
     </Fragment>

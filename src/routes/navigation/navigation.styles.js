@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const Logo = styled(Link)`
+  color: white;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: oblique;
+  font-size: 1.15em;
+`;
+
 export const NavItems = styled.ul`
   display: flex;
   list-style: none;
@@ -52,7 +61,7 @@ export const NavLink = styled(Link)`
 export const HamburgerIcon = styled.div`
   width: 35px;
   height: 5px;
-  background-color: black;
+  background-color: #e8f2ff;
   margin: 6px 0;
   z-index: 7;
   position: absolute;
@@ -82,7 +91,7 @@ export const HamburgerIconLine3 = styled(HamburgerIcon)`
 export const HamburgerMenuDiv = styled.div`
   position: absolute;
   top: -16px;
-  right: 0;
+  right: 10px;
   height: 62px;
   width: 60px;
   display: none;

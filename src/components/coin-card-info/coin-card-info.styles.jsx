@@ -13,3 +13,9 @@ export const CoinInfo = styled.div`
 export const Platform = styled.div`
   text-transform: capitalize;
 `;
+
+export const WebsiteLinkColor = styled.div`
+  > a {
+    color: white;
+  }
+`;

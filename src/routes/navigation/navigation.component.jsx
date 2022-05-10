@@ -12,6 +12,7 @@ import {
   HamburgerIconLine2,
   HamburgerIconLine3,
   HamburgerMenuDiv,
+  Logo,
 } from "./navigation.styles.js";
 import { Fragment, useState } from "react";
 
@@ -33,9 +34,9 @@ const Navigation = () => {
         </HamburgerMenuDiv>
         <NavItems>
           <Push>
-            <Link to="/">
-              <div className="logo">Logo</div>
-            </Link>
+            <Logo to="/">
+              <div className="logo">WL</div>
+            </Logo>
           </Push>
           <NavLinkItem open={isOpen}>
             <NavLink to="/icos">ICOs</NavLink>

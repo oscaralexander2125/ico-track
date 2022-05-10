@@ -7,7 +7,10 @@ import CoinCardInfo from "../../components/coin-card-info/coin-card-info.compone
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUserCoins } from "../../store/user/user.action";
-import "./watchlist-coin-info.styles.scss";
+import {
+  WatchlistCoinInfoContainer,
+  RemoveCoinButton,
+} from "./watchlist-coin-info.styles.jsx";
 
 const WatchListCoinInfo = () => {
   const selectUser = useSelector(selectCurrentUser);
@@ -25,12 +28,12 @@ const WatchListCoinInfo = () => {
   };
 
   return (
-    <div className="watchlist-coin-info-container">
+    <WatchlistCoinInfoContainer>
       <CoinCardInfo />
-      <button className="remove-coin-button" onClick={removeCoinFromWatchList}>
+      <RemoveCoinButton onClick={removeCoinFromWatchList}>
         Remove from WatchList
-      </button>
-    </div>
+      </RemoveCoinButton>
+    </WatchlistCoinInfoContainer>
   );
 };
 
