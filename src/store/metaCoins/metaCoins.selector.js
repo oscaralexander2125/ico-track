@@ -6,3 +6,8 @@ export const selectCurrentCoins = createSelector(
   [selectCurrentReducer],
   (coinSlice) => coinSlice.currentMetaCoins
 );
+
+export const selectLoading = createSelector(
+  [selectCurrentReducer],
+  (loadingSlice) => loadingSlice.isLoading
+);

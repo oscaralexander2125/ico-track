@@ -1,21 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentCoins } from "../../store/metaCoins/metaCoins.selector";
-import { useEffect } from "react";
-import { setCurrentCoins } from "../../store/metaCoins/metaCoins.action";
+import {
+  selectCurrentCoins,
+  selectLoading,
+} from "../../store/metaCoins/metaCoins.selector";
+import { Fragment, useEffect } from "react";
+import { fetchCoinsAsync } from "../../store/metaCoins/metaCoins.action";
 import IcoPreviewCard from "../ico-preview-card/ico-preview-card.component";
 import { ListContainer, CoinContainer } from "./coin-list.styles.jsx";
+import Spinner from "../spinner/spinner.component";
 
 const CoinList = ({ metaVerseUrl }) => {
   const dispatch = useDispatch();
   const selectCoins = useSelector(selectCurrentCoins);
+  const selectIsLoading = useSelector(selectLoading);
 
   useEffect(() => {
-    fetch(metaVerseUrl)
-      .then((res) => res.json())
-      .then((response) => {
-        dispatch(setCurrentCoins(response));
-      })
-      .catch((err) => console.log(err.message));
+    dispatch(fetchCoinsAsync(metaVerseUrl));
   }, [dispatch, metaVerseUrl]);
 
   const coinsList =
@@ -27,8 +27,15 @@ const CoinList = ({ metaVerseUrl }) => {
         </CoinContainer>
       );
     });
-
-  return <ListContainer>{coinsList}</ListContainer>;
+  return (
+    <Fragment>
+      {selectIsLoading ? (
+        <Spinner />
+      ) : (
+        <ListContainer>{coinsList}</ListContainer>
+      )}
+    </Fragment>
+  );
 };
 
 export default CoinList;

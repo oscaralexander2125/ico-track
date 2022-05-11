@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import {
@@ -15,13 +15,20 @@ import {
   Logo,
 } from "./navigation.styles.js";
 import { Fragment, useState } from "react";
+import { fetchCurrentUserCoinsSuccess } from "../../store/user/user.action";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const signOut = () => {
+    signOutUser();
+    dispatch(fetchCurrentUserCoinsSuccess([]));
   };
 
   return (
@@ -46,7 +53,7 @@ const Navigation = () => {
           </NavLinkItem>
           {currentUser ? (
             <NavLinkItem open={isOpen}>
-              <SignOutButton onClick={signOutUser}>Sign Out</SignOutButton>
+              <SignOutButton onClick={signOut}>Sign Out</SignOutButton>
             </NavLinkItem>
           ) : (
             <NavLinkItem open={isOpen}>

@@ -1,18 +1,19 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectCurrentUser } from "../../store/user/user.selector";
 import {
-  addCoinToUserDb,
-  getDocumentData,
-} from "../../utils/firebase/firebase.utils";
+  loadingState,
+  selectCurrentUser,
+} from "../../store/user/user.selector";
+import { addCoinToUserDb } from "../../utils/firebase/firebase.utils";
 import CoinCardInfo from "../../components/coin-card-info/coin-card-info.component";
 import {
   MetaCoinInfoContainer,
   AddToWatchlistButton,
 } from "./meta-coins-info.styles.jsx";
 import { useDispatch } from "react-redux";
-import { setCurrentUserCoins } from "../../store/user/user.action";
+import { fetchUserCoinsAsync } from "../../store/user/user.action";
 import { useState } from "react";
+import Spinner from "../../components/spinner/spinner.component";
 
 const MetaCoinsInfo = () => {
   const { ico } = useParams();
@@ -20,6 +21,7 @@ const MetaCoinsInfo = () => {
   const [addToList, setAddToList] = useState(false);
 
   const selectUser = useSelector(selectCurrentUser);
+  const loading = useSelector(loadingState);
   const dispatch = useDispatch();
   const addedToWatchlist = <p>Added to Watchlist!</p>;
   const addToWatchList = async () => {
@@ -27,9 +29,10 @@ const MetaCoinsInfo = () => {
       return setNotUserLoggedIn(true);
     }
 
-    addCoinToUserDb(selectUser, ico);
-    const newUserInfo = await getDocumentData(selectUser);
-    dispatch(setCurrentUserCoins(newUserInfo.coins));
+    await addCoinToUserDb(selectUser, ico);
+
+    dispatch(fetchUserCoinsAsync(selectUser));
+    console.log(loading);
     setAddToList(true);
   };
 
@@ -42,7 +45,8 @@ const MetaCoinsInfo = () => {
       {isNotUserLoggedIn && (
         <div>Not signed in. Log In to build your watchist</div>
       )}
-      {addToList && addedToWatchlist}
+      {loading && <div>Adding...</div>}
+      {!loading && addToList && addedToWatchlist}
     </MetaCoinInfoContainer>
   );
 };
