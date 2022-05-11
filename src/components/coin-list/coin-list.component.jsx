@@ -10,13 +10,14 @@ import { ListContainer, CoinContainer } from "./coin-list.styles.jsx";
 import Spinner from "../spinner/spinner.component";
 
 const CoinList = ({ metaVerseUrl }) => {
+  //console.log(metaVerseUrl);
   const dispatch = useDispatch();
   const selectCoins = useSelector(selectCurrentCoins);
   const selectIsLoading = useSelector(selectLoading);
 
-  useEffect(() => {
-    dispatch(fetchCoinsAsync(metaVerseUrl));
-  }, [dispatch, metaVerseUrl]);
+  // useEffect(() => {
+  //   dispatch(fetchCoinsAsync(metaVerseUrl));
+  // }, [dispatch, metaVerseUrl]);
 
   const coinsList =
     selectCoins &&

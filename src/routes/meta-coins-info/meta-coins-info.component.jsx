@@ -32,7 +32,6 @@ const MetaCoinsInfo = () => {
     await addCoinToUserDb(selectUser, ico);
 
     dispatch(fetchUserCoinsAsync(selectUser));
-    console.log(loading);
     setAddToList(true);
   };
 

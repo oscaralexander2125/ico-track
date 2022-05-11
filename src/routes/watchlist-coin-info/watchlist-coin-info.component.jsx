@@ -1,15 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getDocumentData,
-  removeCoinFromUserDb,
-} from "../../utils/firebase/firebase.utils";
+import { removeCoinFromUserDb } from "../../utils/firebase/firebase.utils";
 import CoinCardInfo from "../../components/coin-card-info/coin-card-info.component";
-import { selectCurrentUser } from "../../store/user/user.selector";
-import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchUserCoinsAsync,
-  setCurrentUserCoins,
-} from "../../store/user/user.action";
+  loadingState,
+  selectCurrentUser,
+} from "../../store/user/user.selector";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUserCoinsAsync } from "../../store/user/user.action";
 import {
   WatchlistCoinInfoContainer,
   RemoveCoinButton,
@@ -17,6 +14,7 @@ import {
 
 const WatchListCoinInfo = () => {
   const selectUser = useSelector(selectCurrentUser);
+  const loading = useSelector(loadingState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { ico } = useParams();
@@ -24,8 +22,9 @@ const WatchListCoinInfo = () => {
   const removeCoinFromWatchList = async () => {
     await removeCoinFromUserDb(selectUser, ico);
 
-    dispatch(fetchUserCoinsAsync(selectUser));
-    navigate("/watchlist");
+    dispatch(fetchUserCoinsAsync(selectUser)).then(() =>
+      navigate("/watchlist")
+    );
   };
 
   return (
