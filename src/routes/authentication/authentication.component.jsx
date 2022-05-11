@@ -24,6 +24,8 @@ const Authentication = () => {
 
   return (
     <div className="signInOrUp">
+      <div>demo: test@test.com</div>
+      <div>password: 12341234</div>
       {loginForm ? (
         <SignInForm alternateForms={alternateForms} />
       ) : (

@@ -84,7 +84,7 @@ const SignUpForm = ({ alternateForms }) => {
           onChange={changeHandler}
           value={confirmPassword}
         />
-        <button type="submit">Sign In</button>
+        <button type="submit">Sign Up</button>
       </form>
       <h3 className="signIn-text" onClick={() => alternateForms(true)}>
         Sign In
