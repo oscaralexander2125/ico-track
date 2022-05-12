@@ -10,12 +10,7 @@ import {
   getDocumentData,
   onAuthStateChangedListener,
 } from "./utils/firebase/firebase.utils";
-import {
-  fetchCurrentUserCoinsSuccess,
-  fetchUserCoinsAsync,
-  setCurrentUser,
-  setCurrentUserCoins,
-} from "./store/user/user.action";
+import { fetchUserCoinsAsync, setCurrentUser } from "./store/user/user.action";
 import MetaCoinsInfo from "./routes/meta-coins-info/meta-coins-info.component";
 import WatchListCoinInfo from "./routes/watchlist-coin-info/watchlist-coin-info.component";
 

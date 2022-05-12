@@ -2,11 +2,8 @@ import { useState } from "react";
 import "./signin-form.styles.scss";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
-import { setCurrentUser } from "../../store/user/user.action";
-import { useDispatch } from "react-redux";
 
 const defaultFormInputs = {
   email: "",
@@ -14,7 +11,6 @@ const defaultFormInputs = {
 };
 
 const SignInForm = ({ alternateForms, logGoogleRedirect }) => {
-  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormInputs);
   const { email, password } = formFields;
 

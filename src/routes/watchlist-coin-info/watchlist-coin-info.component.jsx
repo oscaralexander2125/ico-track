@@ -1,10 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { removeCoinFromUserDb } from "../../utils/firebase/firebase.utils";
 import CoinCardInfo from "../../components/coin-card-info/coin-card-info.component";
-import {
-  loadingState,
-  selectCurrentUser,
-} from "../../store/user/user.selector";
+import { selectCurrentUser } from "../../store/user/user.selector";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserCoinsAsync } from "../../store/user/user.action";
 import {
@@ -14,7 +11,7 @@ import {
 
 const WatchListCoinInfo = () => {
   const selectUser = useSelector(selectCurrentUser);
-  const loading = useSelector(loadingState);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { ico } = useParams();

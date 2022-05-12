@@ -13,7 +13,7 @@ import {
 import { useDispatch } from "react-redux";
 import { fetchUserCoinsAsync } from "../../store/user/user.action";
 import { useState } from "react";
-import Spinner from "../../components/spinner/spinner.component";
+
 
 const MetaCoinsInfo = () => {
   const { ico } = useParams();

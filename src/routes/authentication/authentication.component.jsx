@@ -1,14 +1,7 @@
-import {
-  auth,
-  signInWithGooglePopup,
-  createUserDocumentFromAuth,
-  signInWithGoogleRedirect,
-} from "../../utils/firebase/firebase.utils";
-import { getRedirectResult } from "firebase/auth";
 import SignInForm from "../../components/signin-form/signin-form.component";
 import SignUpForm from "../../components/signup-form/signup-form.component";
 import "./authentication.styles.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const loginOrSignUp = {
   loginForm: true,

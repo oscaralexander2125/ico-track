@@ -39,7 +39,7 @@ const WatchList = () => {
           <CoinList metaVerseUrl={entireUrl} />
         </Fragment>
       ) : (
-        <div>not signed in. log in or register to add to your watchlist</div>
+        <div>Not signed in. Log in or register to add to your watchlist</div>
       )}
     </WatchlistContainer>
   );
